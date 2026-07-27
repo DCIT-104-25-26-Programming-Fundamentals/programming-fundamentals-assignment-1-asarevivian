@@ -68,3 +68,86 @@
 # YOUR CODE BELOW — remove the # symbols from the scaffold and fill it in
 # =============================================================================
 
+# ============================================================
+# PROGRAMMING FUNDAMENTALS – Assignment 5
+# TASK: Simple Calculator
+# ============================================================
+
+def add(a, b):
+    return a + b
+
+def subtract(a, b):
+    return a - b
+
+def multiply(a, b):
+    return a * b
+
+def divide(a, b):
+    if b == 0:
+        return None
+    return round(a / b, 2)
+
+def modulus(a, b):
+    if b == 0:
+        return None
+    return a % b
+
+def power(a, b):
+    return a ** b
+
+
+def menu():
+    while True:
+        print("=========================")
+        print("       CALCULATOR MENU   ")
+        print("=========================")
+        print("1. Addition")
+        print("2. Subtraction")
+        print("3. Multiplication")
+        print("4. Division")
+        print("5. Modulus")
+        print("6. Power")
+        print("7. Quit")
+
+        choice = input("Select an operation (1-7): ")
+
+        if choice == "7":
+            print("Goodbye!")
+            break
+
+        if choice not in ["1", "2", "3", "4", "5", "6"]:
+            print("Invalid choice. Please select between 1 and 7.\n")
+            continue
+
+        try:
+            a = float(input("Enter first number: "))
+            b = float(input("Enter second number: "))
+        except ValueError:
+            print("Error: Please enter valid numbers.\n")
+            continue
+
+        if choice == "1":
+            print(f"Result: {a} + {b} = {add(a, b)}\n")
+        elif choice == "2":
+            print(f"Result: {a} - {b} = {subtract(a, b)}\n")
+        elif choice == "3":
+            print(f"Result: {a} x {b} = {multiply(a, b)}\n")
+        elif choice == "4":
+            result = divide(a, b)
+            if result is None:
+                print("Error: Cannot divide by zero.\n")
+            else:
+                print(f"Result: {a} / {b} = {result}\n")
+        elif choice == "5":
+            result = modulus(a, b)
+            if result is None:
+                print("Error: Cannot perform modulus with zero.\n")
+            else:
+                print(f"Result: {a} % {b} = {result}\n")
+        elif choice == "6":
+            print(f"Result: {a} ^ {b} = {power(a, b)}\n")
+
+
+# Main block
+if __name__ == "__main__":
+    menu()
