@@ -90,3 +90,74 @@
 # YOUR CODE BELOW — remove the # symbols from the scaffold and fill it in
 # =============================================================================
 
+# ============================================================
+# PROGRAMMING FUNDAMENTALS – Assignment 8
+# TASK: Student Record Management System
+# ============================================================
+
+def add_student(students):
+    name = input("Enter student name: ")
+    student_id = input("Enter student ID: ")
+    scores = list(map(int, input("Enter scores separated by spaces: ").split()))
+    
+    student = {
+        "name": name,
+        "id": student_id,
+        "scores": scores
+    }
+    students.append(student)
+    print(f"Student '{name}' added successfully!\n")
+
+def display_students(students):
+    if not students:
+        print("No student records available.\n")
+        return
+    
+    print("==============================================")
+    print("Name\t\tID\t\tScores\t\tAverage")
+    print("==============================================")
+    for student in students:
+        avg = sum(student["scores"]) / len(student["scores"]) if student["scores"] else 0
+        print(f"{student['name']}\t\t{student['id']}\t\t{student['scores']}\t\t{avg:.2f}")
+    print()
+
+def calculate_average(students):
+    student_id = input("Enter student ID to calculate average: ")
+    for student in students:
+        if student["id"] == student_id:
+            if student["scores"]:
+                avg = sum(student["scores"]) / len(student["scores"])
+                print(f"Average score for {student['name']} (ID: {student_id}) is {avg:.2f}\n")
+            else:
+                print(f"{student['name']} has no scores recorded.\n")
+            return
+    print("Error: Student ID not found.\n")
+
+def menu():
+    students = []
+    while True:
+        print("===============================")
+        print("   STUDENT RECORD SYSTEM MENU  ")
+        print("===============================")
+        print("1. Add student")
+        print("2. Display all students")
+        print("3. Calculate average score")
+        print("4. Quit")
+        
+        choice = input("Enter your choice (1-4): ")
+        
+        if choice == "1":
+            add_student(students)
+        elif choice == "2":
+            display_students(students)
+        elif choice == "3":
+            calculate_average(students)
+        elif choice == "4":
+            print("Goodbye! Exiting Student Record System.")
+            break
+        else:
+            print("Invalid choice. Please enter a number between 1 and 4.\n")
+
+# Main block
+if __name__ == "__main__":
+    menu()
