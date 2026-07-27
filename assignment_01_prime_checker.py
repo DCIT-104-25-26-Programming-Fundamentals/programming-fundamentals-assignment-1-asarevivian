@@ -35,3 +35,29 @@
 # YOUR CODE BELOW — remove the # symbols from the scaffold and fill it in
 # =============================================================================
 
+# ============================================================
+# PROGRAMMING FUNDAMENTALS — Assignment 1
+# Topic: Conditional Logic, Loops, and Functions
+# ============================================================
+
+# TASK: Prime Number Checker
+
+def is_prime(n):
+    # Numbers less than 2 are not prime
+    if n < 2:
+        return False
+    
+    # Check divisibility up to the square root of n
+    for i in range(2, int(n**0.5) + 1):
+        if n % i == 0:
+            return False
+    return True
+
+
+# Main block
+if __name__ == "__main__":
+    number = int(input("Enter a number: "))
+    if is_prime(number):
+        print(f"{number} is a prime number.")
+    else:
+        print(f"{number} is NOT a prime number.")
