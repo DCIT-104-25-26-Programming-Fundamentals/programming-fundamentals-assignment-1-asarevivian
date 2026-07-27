@@ -60,3 +60,73 @@
 # YOUR CODE BELOW — remove the # symbols from the scaffold and fill it in
 # =============================================================================
 
+# ================================================================
+# PROGRAMMING FUNDAMENTALS — Assignment 4
+# Topic: Multi-dimensional Arrays (2D Lists), Nested Loops, and Functions
+# ================================================================
+
+def transpose_matrix(matrix):
+    rows = len(matrix)
+    cols = len(matrix[0])
+    transposed = []
+    for c in range(cols):
+        new_row = []
+        for r in range(rows):
+            new_row.append(matrix[r][c])
+        transposed.append(new_row)
+    return transposed
+
+def add_matrices(matrix1, matrix2):
+    rows = len(matrix1)
+    cols = len(matrix1[0])
+    result = []
+    for r in range(rows):
+        new_row = []
+        for c in range(cols):
+            new_row.append(matrix1[r][c] + matrix2[r][c])
+        result.append(new_row)
+    return result
+
+def multiply_matrices(matrixA, matrixB):
+    rowsA = len(matrixA)
+    colsA = len(matrixA[0])
+    rowsB = len(matrixB)
+    colsB = len(matrixB[0])
+
+    if colsA != rowsB:
+        return None  # invalid dimensions
+
+    result = []
+    for i in range(rowsA):
+        new_row = []
+        for j in range(colsB):
+            total = 0
+            for k in range(colsA):
+                total += matrixA[i][k] * matrixB[k][j]
+            new_row.append(total)
+        result.append(new_row)
+    return result
+
+
+# Helper to read a matrix
+def read_matrix(rows, cols):
+    matrix = []
+    for i in range(rows):
+        row = list(map(int, input(f"Enter row {i+1}: ").split()))
+        if len(row) != cols:
+            print("Error: Row must have exactly", cols, "values.")
+            return None
+        matrix.append(row)
+    return matrix
+
+
+# Main block
+if __name__ == "__main__":
+    # Example: Transpose
+    m = int(input("Enter number of rows: "))
+    n = int(input("Enter number of columns: "))
+    matrix = read_matrix(m, n)
+    if matrix:
+        print("Transposed Matrix:")
+        for row in transpose_matrix(matrix):
+            print(" ".join(map(str, row)))
